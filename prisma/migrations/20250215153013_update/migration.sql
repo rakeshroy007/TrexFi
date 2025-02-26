@@ -1,0 +1,2 @@
+-- AlterTable
+ALTER TABLE "budgets" ALTER COLUMN "lastAlertSent" SET DEFAULT CURRENT_TIMESTAMP;
