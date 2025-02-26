@@ -17,7 +17,7 @@ const aj = arcjet({
     }), 
     detectBot({         // Detects and blocks bots accessing your website.
       mode: "LIVE",     // 3️⃣ Detecting bots in real-time
-      allow: [ "CATEGORY:SEARCH_ENGINE", "GO_HTTP" ]  // 📌 Allowing certain bots...  Allows search engine bots (e.g., Google, Bing)...  Allows bots using Go HTTP clients.
+      allow: [ "CATEGORY:SEARCH_ENGINE", "GO_HTTP", "LINKEDIN_BOT"  ]  // 📌 Allowing certain bots...  Allows search engine bots (e.g., Google, Bing)...  Allows bots using Go HTTP clients.
     }) 
   ] 
 }) 
