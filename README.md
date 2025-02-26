@@ -1,36 +1,81 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# TrexFi - Track Your Finance, Smartly! 🚀
 
-## Getting Started
+TrexFi is a smart and powerful **finance tracker** that helps users manage their **Income** and **Expenses** across multiple accounts with smart categorization and recurring transactions. The name **TrexFi** is a fusion of **"Track"** and **"Finance"**—making financial tracking effortless.
 
-First, run the development server:
+With **AI-powered receipt scanning, budget alerts, and automated monthly reports**, TrexFi simplifies money management. Users can also visualize their financial data through interactive charts, making it easier to track spending patterns and stay on top of their finances. 🚀
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## ✨ Features
+- **Monthly Report via Email** 📩 - Get a detailed summary of your transactions for the last month.
+- **Budget Limit Alerts** ⏰ - Stay on top of your finances with automatic notifications through email when you exceed your budget.
+- **AI Receipt Scanner** 🤖 - Scan receipts and automatically fetch data into the transaction form.
+- **Bot Protection & Rate Limiting** 🛡️ - Users can make up to **20 requests per hour**, with automatic refills every hour.
+- **Secure Authentication** 🔒 - Powered by Clerk for seamless user authentication and authorization.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🚀 Tech Stack
+TrexFi is built with cutting-edge tools and technologies to ensure high performance and security.
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+### **Frontend & UI**
+- **Next.js** (15.1.6) - Server-side rendering & optimized performance
+- **Tailwind CSS** - Modern utility-first styling
+- **ShadCN UI** - Beautiful and customizable UI components
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### **Backend & Database**
+- **Prisma**  - ORM for efficient database management
+- **SupaBase** - A scalable backend-as-a-service for authentication & storage
+- **Inngest**  - Workflow automation for scheduled tasks
 
-## Learn More
 
-To learn more about Next.js, take a look at the following resources:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 📊 How It Works
+1. **User registers & logs in** using Clerk authentication.
+2. **Transactions are added** manually or using the **AI** receipt scanner.
+3. **Users receive monthly email reports** summarizing their transactions.
+4. **Budget alerts are triggered** when expenses exceed set limits.
+5. **Bot protection ensures fair usage**, allowing **20 requests per hour** with automatic refills.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 🛠️ Installation & Setup
+1. Clone the repository:
+   ```sh
+   git clone https://github.com/rakeshroy007/TrexFi.git
+   cd TrexFi
 
-## Deploy on Vercel
+2. Install dependencies:
+    ```sh
+    npm install or npm install --legacy-peer-deps
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+3. Set up environment variables (e.g., SupaBase, Clerk, Prisma, Inngest, AI API keys).
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+4. Run the development server:
+    ```sh
+    npm run dev
+
+5. Open http://localhost:3000 to see TrexFi in action!
+
+## Environment Variables :
+
+To run this project, you will need to add the following environment variables to your .env file
+#### Clerk API Keys :
+
+    1. NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=pk_test_your_public_key
+    2. CLERK_SECRET_KEY=sk_test_your_secret_key
+    3. NEXT_PUBLIC_CLERK_SIGN_IN_URL=sign-in
+    4. NEXT_PUBLIC_CLERK_SIGN_UP_URL=sign-up
+
+#### Database Connection (Supabase) :
+    1. DATABASE_URL=postgresql://username:password@host:port/database?pgbouncer=true
+    2. DIRECT_URL=postgresql://username:password@host:port/database
+
+#### Arcjet API Key :
+    ARCJET_KEY=ajkey_your_arcjet_key
+ 
+#### Gemini AI API Key :
+    GEMINI_API_KEY=your_gemini_api_key
+
+#### SMTP (Email Sending Configuration) :
+    1. SMTP_USER=your_email@example.com
+    2. SMTP_PASS=your_smtp_password
+    3. SMTP_PORT=465
+
+
+## 🤝 Contributing
+Feel free to fork this repository and contribute! If you find any issues, submit a pull request or open an issue.
