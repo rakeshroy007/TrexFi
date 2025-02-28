@@ -50,12 +50,6 @@ const HeroSection = () => {
                     Get Started
                 </Button>
             </Link>
-
-            {/* <Link href="https://github.com/rakeshroy007">
-                <Button size='lg' variant="outline" className="px-8">
-                    Github
-                </Button>
-            </Link> */}
         </div>
 
         <div className='hero-image-wrapper'>
