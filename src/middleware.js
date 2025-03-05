@@ -32,7 +32,7 @@ const clerk = clerkMiddleware(async (auth, req) => {
     return redirectToSignIn()
   }
 });
-export default createMiddleware(clerk, aj)
+export default createMiddleware(aj, clerk)
 
 
 
