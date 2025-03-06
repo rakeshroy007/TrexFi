@@ -140,7 +140,7 @@ const AddTransactionForm = ({ accounts, categories, editMode = false, initialDat
 
           {
             errors.amount && (
-              <p className='text-sm text-red-500'>{errors.type.message}</p>
+              <p className='text-sm text-red-500'>{errors.amount.message}</p>
             )
           }
         </div>

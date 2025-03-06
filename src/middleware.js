@@ -1,5 +1,6 @@
 import arcjet, { createMiddleware, detectBot, shield } from "@arcjet/next";
 import { clerkMiddleware, createRouteMatcher } from "@clerk/nextjs/server";
+import { NextResponse } from "next/server";
 
 
 const isProtectedRoute = createRouteMatcher([
@@ -31,7 +32,9 @@ const clerk = clerkMiddleware(async (auth, req) => {
 
     return redirectToSignIn()
   }
+  return NextResponse.next()
 });
+// Chain middlewares - ArcJet runs first, then Clerk
 export default createMiddleware(aj, clerk)
 
 
