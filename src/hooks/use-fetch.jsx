@@ -20,7 +20,7 @@ const useFetch = (cb) => {
 
         } catch (error) {
             setError(error)
-            toast.error(error.message)
+            toast.error(error?.message || "Something went wrong")    // Handle missing error.message
         } finally { 
             setLoading(false)
         }

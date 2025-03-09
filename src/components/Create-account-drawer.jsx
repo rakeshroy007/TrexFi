@@ -59,7 +59,7 @@ const CreateAccountDrawer = ({ children }) => {
             <DrawerTrigger asChild>{children}</DrawerTrigger>
             <DrawerContent>
                 <DrawerHeader>
-                    <DrawerTitle>Createe New Account</DrawerTitle>
+                    <DrawerTitle>Create New Account</DrawerTitle>
                 </DrawerHeader>
 
                 <div className='px-4 pb-4'>

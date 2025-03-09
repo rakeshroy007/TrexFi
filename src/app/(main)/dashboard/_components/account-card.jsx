@@ -11,6 +11,7 @@ import React, { useEffect, useState } from 'react'
 import { toast } from 'sonner'
 
 const AccountCard = ({ account }) => {
+    if (!account) return null;  // Ensure account is defined
     const { name, type, balance, id, isDefault } = account
     const [loading, setLoading] = useState(false);
     const router = useRouter();
@@ -49,7 +50,14 @@ const AccountCard = ({ account }) => {
         e.preventDefault(); // Prevents instant navigation
         if (!loading) {
             setLoading(true);
-            router.push(`/account/${id}`);
+            try {
+                router.push(`/account/${id}`);
+            } catch (error) {
+                console.error("Navigation failed:", error);
+                toast.error("Failed to navigate.");
+            } finally {
+                setLoading(false)
+            }
         }
     }
 

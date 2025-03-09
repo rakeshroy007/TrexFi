@@ -9,17 +9,37 @@ import BudgetProgress from './_components/budget-progress'
 import DashboardOverview from './_components/transaction-overview'
 
 export default async function DashboardPage (){
-  const accounts = await getUserAccounts()
 
-  const defaultAccount = accounts?.find((account) => account.isDefault)
+  let accounts = [];
+  let transactions = [];
+  let budgetData = null;
+  let defaultAccount = null;
+  let errorOccurred = false; // Track errors
+  
+  try {
+    accounts = await getUserAccounts()
+    
+    defaultAccount = accounts?.find((account) => account.isDefault)
+    
+    if (defaultAccount) {
+      budgetData = await getCurrentBudget(defaultAccount.id)
+    }
+  
+  
+    transactions = await getDashboardData()
+  } catch (error) {
+    console.error("Error fetching dashboard data:", error);
 
-  let budgetData = null
-  if (defaultAccount) {
-    budgetData = await getCurrentBudget(defaultAccount.id)
   }
 
-
-  const transactions = await getDashboardData()
+  if (errorOccurred) {
+    return (
+      <div className="text-center text-red-500 font-semibold">
+        Failed to load dashboard data. Please try again later.
+        errorOccurred = true;
+      </div>
+    );
+  }
 
   return ( 
     <div className='space-y-8'>

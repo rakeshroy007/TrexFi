@@ -37,17 +37,11 @@ const AccountPage = async({ params }) => {
             </div>
         </div>
 
-        {/* Chart Section */}
-        <Suspense
-            fallback={<BarLoader className='mt-4' width={"100%"} color='#9333ea' />}
-        >
+        <Suspense fallback={<BarLoader className='mt-4' width={"100%"} color='#9333ea' />} >
+            {/* Chart Section */}
             <AccountChart transactions={transactions} />
-        </Suspense>
 
-        {/* Transaction Table */}
-        <Suspense
-            fallback={<BarLoader className='mt-4' width={"100%"} color='#9333ea' />}
-        >
+            {/* Transaction Table */}
             <TransactionTable transactions={transactions} />
         </Suspense>
     </div>

@@ -9,10 +9,22 @@ const isProtectedRoute = createRouteMatcher([
   "/transaction(.*)", 
 ]) 
 
+// Enable Bot protection : here we track using IP Address... 
+const aj = arcjet({ 
+  key: process.env.ARCJET_KEY, 
+  rules: [ 
+    shield({ 
+      mode: "LIVE"     // 2️⃣ Enabling real-time protection 
+    }), 
+    detectBot({         // Detects and blocks bots accessing your website.
+      mode: "LIVE",     // 3️⃣ Detecting bots in real-time
+      allow: [ "CATEGORY:SEARCH_ENGINE", "GO_HTTP", "LINKEDIN_CRAWLER" ]  // 📌 Allowing certain bots...  Allows search engine bots (e.g., Google, Bing)...  Allows bots using Go HTTP clients.
+    }) 
+  ] 
+})  
  
- 
-
-export default clerkMiddleware(async (auth, req) => {
+// ➡️ This code is for the 'bot protection' concept 
+const clerk = clerkMiddleware(async (auth, req) => {
   const { userId } = await auth(); 
 
   if (!userId && isProtectedRoute(req)) {
@@ -22,6 +34,8 @@ export default clerkMiddleware(async (auth, req) => {
   }
   return NextResponse.next()
 });
+// Chain middlewares - ArcJet runs first, then Clerk
+export default createMiddleware(aj, clerk)
 
 
 
