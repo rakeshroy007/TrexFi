@@ -26,12 +26,13 @@ export const checkUser = async () => {
                 clerkUserId: user.id,
                 name,
                 imageUrl: user.imageUrl,
-                email: user.emailAddresses[0].emailAddress,
+                email: user.emailAddresses[0]?.emailAddress,
             }
         })
 
         return newUser ;
     } catch (error) {
-        console.log(error.message)
+        console.error("Database Error:", error.message)
+        return null  // ✅ Added this to prevent continuation after an error
     }
 }

@@ -47,7 +47,7 @@ export async function updateDefaultAccount(accountId) {
             data: { isDefault: true }
         })
 
-        revalidatePath("/dashboard")
+        await revalidatePath("/dashboard")
 
         return { success: true, data: serializeTransaction(account) }
 
@@ -153,9 +153,9 @@ export async function bulkDeleteTransactions(transactionIds) {
             })}
         })
 
-        revalidatePath("/dashboard")
+        await revalidatePath("/dashboard")
         // revalidatePath("/account/[id]")
-        revalidatePath(`/account/${accountId}`)
+        await revalidatePath(`/account/${accountId}`)
 
         return { success: true }
 

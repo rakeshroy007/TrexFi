@@ -12,11 +12,11 @@ const HeroSection = () => {
     useEffect(() => { 
 
         const imageElement = imageRef.current;
+        if (!imageElement) return; // ✅ Prevent potential null reference errors
     
         const handleScroll = () => {
             const scrollPosition = window.scrollY;
-            const scrollThreshold = 100; 
-            console.log(scrollThreshold)
+            const scrollThreshold = 100;
     
             if(scrollPosition > scrollThreshold) {
                 imageElement.classList.add("scrolled")

@@ -17,7 +17,7 @@ export default async function DashboardPage (){
   let errorOccurred = false; // Track errors
   
   try {
-    accounts = await getUserAccounts()
+    accounts = (await getUserAccounts()) || []
     
     defaultAccount = accounts?.find((account) => account.isDefault)
     
@@ -29,6 +29,7 @@ export default async function DashboardPage (){
     transactions = await getDashboardData()
   } catch (error) {
     console.error("Error fetching dashboard data:", error);
+    errorOccurred = true;
 
   }
 
@@ -36,7 +37,6 @@ export default async function DashboardPage (){
     return (
       <div className="text-center text-red-500 font-semibold">
         Failed to load dashboard data. Please try again later.
-        errorOccurred = true;
       </div>
     );
   }
@@ -74,7 +74,7 @@ export default async function DashboardPage (){
           </CreateAccountDrawer>
 
           {
-            accounts.length>0 && 
+            Array.isArray(accounts) && accounts.length>0 && 
             accounts?.map((account)=> {
               return <AccountCard key={account.id} account={account} />
             })

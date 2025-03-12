@@ -63,27 +63,28 @@ const AddTransactionForm = ({ accounts, categories, editMode = false, initialDat
   const filteredCategories = categories.filter((category) => category.type === type)
 
   const onSubmitt = async (data) => {
-    const formData = {
-      ...data,
-      amount: parseFloat(data.amount),
-    }
-
-    if (editMode) {
-      transactionFn(editId, formData)
-    } else {
-      transactionFn(formData)          
+    try {
+      const formData = {
+        ...data,
+        amount: parseFloat(data.amount),
+      }
+  
+      const result = editMode 
+        ? await transactionFn(editId, formData)
+        : await transactionFn(formData)
+  
+      if (result?.success) {
+        toast.success(editMode ? "Transaction updated successfully" : "Transaction created successfully")
+        reset()
+        router.push(`/account/${result?.data?.accountId || ""}`)  // Add fallback
+      } else {
+        toast.error("Failed to save transaction. Please try again.")
+      }
+    } catch (error) {
+      console.error("Transaction error:", error)
+      toast.error("An error occurred. Please try again.")
     }
   }
-
-  useEffect(() => {
-    if(transactionResult?.success && !transactionLoading){
-      toast.success(editMode ? "Transaction updated successfully" : "Transaction created successfully")
-      reset()
-      router.push(`/account/${transactionResult?.data?.accountId}`)
-
-    }
-  }, [transactionResult, transactionLoading, editMode])
-
 
   const handleScanComplete = (scannedData) => {
     if (scannedData) {
@@ -174,7 +175,7 @@ const AddTransactionForm = ({ accounts, categories, editMode = false, initialDat
 
           {
             errors.accountId && (
-              <p className='text-sm text-red-500'>{errors.type.message}</p>
+              <p className='text-sm text-red-500'>{errors.accountId.message}</p>
             )
           } 
         </div>

@@ -51,7 +51,17 @@ const CreateAccountDrawer = ({ children }) => {
     }, [error])
 
     const onSubmitt = async (data) => {
-        await createAccountFn(data)
+        try {
+            const response = await createAccountFn(data)
+    
+            if (!response) {
+                throw new Error("Failed to create account. Please try again.")
+            }
+    
+        } catch (err) {
+            console.error("Error creating account:", err.message || err)
+            toast.error("Error creating account. Please try again.")
+        }
     }
 
     return (

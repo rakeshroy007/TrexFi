@@ -8,7 +8,11 @@ import { checkUser } from '@/lib/checkUser'
 
 const Header = async() => {
 
-    await checkUser()
+    try {
+        await checkUser()
+    } catch (error) {
+        console.error("Error in checkUser:", error)
+    }
 
   return (
     <div className='fixed top-0 w-full bg-white/60 backdrop-blur-md z-50 border-b '>
@@ -31,12 +35,12 @@ const Header = async() => {
                         </Button>
                     </Link>
 
-                    <a href="/transaction/create"> 
+                    <Link href="/transaction/create"> 
                         <Button className='flex items-center gap-2 hover:opacity-70'>
                             <PenBox size={18} /> 
                             <span className='hidden md:inline'>Add Transaction</span>
                         </Button> 
-                    </a>
+                    </Link>
                 </SignedIn>
                 <SignedOut>
                     <SignInButton forceRedirectUrl='/dashboard'>

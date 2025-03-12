@@ -95,7 +95,7 @@ export async function updateBudget(amount) {
             }
         })
 
-        revalidatePath("/dashboard")
+        await revalidatePath("/dashboard")
         return {
             success: true,
             data: { ...budget, amount: budget.amount.toNumber() }
