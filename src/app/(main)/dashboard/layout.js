@@ -1,6 +1,7 @@
 import React, { Suspense } from 'react'
 import DashboardPage from './page'
-import { BarLoader } from 'react-spinners'
+// import { BarLoader } from 'react-spinners'
+import { DashboardSkeleton } from '@/components/DashboardSkeleton'
 
 const DashboardLayout = () => {
   return (
@@ -10,7 +11,7 @@ const DashboardLayout = () => {
       </div>
 
     {/* Dashboard Page */}
-        <Suspense fallback={<BarLoader className='mt-4' width={"100%"} color='#9333ea' />} >
+        <Suspense fallback={<DashboardSkeleton />} >
             <DashboardPage />
         </Suspense>
     </div>

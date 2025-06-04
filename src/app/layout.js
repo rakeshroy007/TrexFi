@@ -19,11 +19,11 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     
+    <ClerkProvider>
     <html lang="en">
       <body
         className={`${inter.className}`}
         >
-        <ClerkProvider>
         <Header />
         <main className='min-h-screen'>{children}</main>
         <Toaster richColors />
@@ -33,8 +33,8 @@ export default function RootLayout({ children }) {
             <p>Designed and Developed with &#128420; </p>
           </div>
         </footer>
-        </ClerkProvider>
       </body>
     </html>
+    </ClerkProvider>
   );
 }

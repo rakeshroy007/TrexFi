@@ -15,7 +15,7 @@ export async function sendEmail2( {to, subject, react} ) {
 
       
       const data = await transporter.sendMail({
-        from: '"Some Random Guy 👻" <maddison53@ethereal.email>',
+        from: '"Some Random Guys 👻" <maddison53@ethereal.email>',
         to: to,
         subject: subject, 
         html: react,

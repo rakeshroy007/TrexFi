@@ -6,7 +6,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Input } from '@/components/ui/input'
 import { Progress } from '@/components/ui/progress'
 import useFetch from '@/hooks/use-fetch'
-import { Check, Pencil, X } from 'lucide-react'
+import { Check, Loader2, Pencil, X } from 'lucide-react'
 import React, { useEffect, useState } from 'react'
 import { toast } from 'sonner'
 
@@ -71,12 +71,21 @@ const BudgetProgress = ({initialBudget, currentExpenses}) => {
                                     placeholder="Enter amount"
                                     autoFocus
                                 />
-                                <Button variant="ghost" size='icon' onClick={handleUpdateBudget} disabled={isLoading}>
-                                    <Check className='h-4 w-4 text-green-500' />
-                                </Button>
-                                <Button variant="ghost" size='icon' onClick={handleCancel} disabled={isLoading}>
-                                    <X className='h-4 w-4 text-red-500' />
-                                </Button>
+                                {
+                                    isLoading ? (
+                                        <Loader2 className='ml-2 h-4 w-4 animate-spin' />
+                                    ) : (
+                                        <>
+                                            <Button variant="ghost" size='icon' onClick={handleUpdateBudget} >
+                                                <Check className='h-4 w-4 text-green-500' />
+                                            </Button>
+                                            <Button variant="ghost" size='icon' onClick={handleCancel} >
+                                                <X className='h-4 w-4 text-red-500' />
+                                            </Button>
+                                        </>
+                                    )
+                                }
+                                
                             </div>
                         ) : <>
                                 <CardDescription>

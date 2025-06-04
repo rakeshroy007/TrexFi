@@ -13,6 +13,9 @@
 # testing
 /coverage
 
+#Custom_file
+Fix_error.tsx
+
 # next.js
 /.next/
 /out/

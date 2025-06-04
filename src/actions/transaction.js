@@ -1,8 +1,8 @@
 'use server'
 
-import aj from "@/lib/arcjet"
+// import aj from "@/lib/arcjet"
 import { db } from "@/lib/prisma"
-import { request } from "@arcjet/next"
+// import { request } from "@arcjet/next"
 import { auth } from "@clerk/nextjs/server"
 import { GoogleGenerativeAI } from "@google/generative-ai"
 import { revalidatePath } from "next/cache"
@@ -18,7 +18,7 @@ export async function createTransaction(data) {
     try {
         const { userId } = await auth()
         if (!userId) throw new Error("Unauthorized")
-        
+/*
         // 📌 Arcjet to add rate limiting :
         // ➡️ Get request data for ArcJet
         const req = await request()
@@ -44,7 +44,7 @@ export async function createTransaction(data) {
 
             throw new Error("Request Blocked")
         }
-
+*/
 
         const user = await db.user.findUnique({
             where: { clerkUserId: userId },
@@ -85,8 +85,8 @@ export async function createTransaction(data) {
             return newTransaction ;
         })
 
-        revalidatePath("/dashboard", 'page')
-        revalidatePath(`/account/${transaction.accountId}`, 'page')
+        revalidatePath("/dashboard")
+        revalidatePath(`/account/${transaction.accountId}`)
 
         return { success: true, data: serializeAmount(transaction)}
     } catch (error) {

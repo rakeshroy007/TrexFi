@@ -5,7 +5,9 @@ export const checkUser = async () => {
     const user = await currentUser() 
     
     if (!user) {
-        return null
+        console.log("Inside checkUser.js")
+        return null 
+        
     }
 
     // Check in Supabase... 

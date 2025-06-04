@@ -1,3 +1,5 @@
+export const dynamic = 'force-dynamic';
+
 import HeroSection from "@/components/Hero";
 import { featuresData, howItWorksData, statsData, testimonialsData } from "./data/landing";
 import { Card, CardContent } from "@/components/ui/card";

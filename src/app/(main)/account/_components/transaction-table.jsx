@@ -116,7 +116,8 @@ const TransactionTable = ({ transactions }) => {
         setSearchTerm("")
         setTypeFilter("")
         setRecurringFilter("")
-        setSelectedIds("")
+        // setSelectedIds("")
+        setSelectedIds([])          
     }
     
 
@@ -139,6 +140,7 @@ const TransactionTable = ({ transactions }) => {
         }
 
         deleteFn(selectedIds)
+        setSelectedIds([])     // 📌 Problem-2-Solved
 
     }
 
@@ -207,7 +209,7 @@ const TransactionTable = ({ transactions }) => {
                             <div className='flex items-center gap-2'>
                                 <Button variant="destructive" size="sm" onClick={handleBulkDelete}>
                                     <Trash className='h-4 w-4 mr-2' />
-                                    Delete Selected ({selectedIds.length})
+                                    ( {selectedIds.length} )
                                 </Button>
                             </div>
                         )
@@ -231,8 +233,10 @@ const TransactionTable = ({ transactions }) => {
                             <TableHead className="w-[50px]">
                                 <Checkbox
                                     onCheckedChange={handleSelectAll}
-                                    checked={selectedIds.length === paginatedTransactions.length && paginatedTransactions.length > 0 }
-                                />
+                                    // 📌 Problem-3-Solved
+                                    checked={filteredAndSortedTransactions.length > 0 &&
+                                                selectedIds.length === filteredAndSortedTransactions.length}
+                                            />
                             </TableHead>
                             <TableHead className="cursor-pointer"
                                 onClick={() => handleSort("date")  }

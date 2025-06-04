@@ -1,4 +1,4 @@
-import arcjet, { createMiddleware, detectBot, shield } from "@arcjet/next";
+// import arcjet, { createMiddleware, detectBot, shield } from "@arcjet/next";
 import { clerkMiddleware, createRouteMatcher } from "@clerk/nextjs/server";
 import { NextResponse } from "next/server";
 
@@ -9,6 +9,7 @@ const isProtectedRoute = createRouteMatcher([
   "/transaction(.*)", 
 ]) 
 
+/*
 // Enable Bot protection : here we track using IP Address... 
 const aj = arcjet({ 
   key: process.env.ARCJET_KEY, 
@@ -36,8 +37,17 @@ const clerk = clerkMiddleware(async (auth, req) => {
 });
 // Chain middlewares - ArcJet runs first, then Clerk
 export default createMiddleware(aj, clerk)
+*/
 
+export default clerkMiddleware(async (auth, req) => {
+  const { userId } = await auth(); 
 
+  if (!userId && isProtectedRoute(req)) {
+    const { redirectToSignIn } = await auth()
+    return redirectToSignIn()
+  }
+  return NextResponse.next()
+});
 
 export const config = {
   matcher: [

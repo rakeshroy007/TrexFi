@@ -9,7 +9,7 @@ const useFetch = (cb) => {
     const [loading, setLoading] = useState(null)
     const [error, setError] = useState(null)
 
-    const fn = async (...args) => {      
+    const fn = async (...args) => {      // Any number of arguments can come, and all of them will be available inside args as an array.
         setLoading(true)   
         setError(null)            // Clear any previous errors
 
@@ -17,6 +17,7 @@ const useFetch = (cb) => {
             const response = await cb(...args)      // Calls the API function (e.g., createAccount)
             setData(response)
             setError(null)
+            return response       // 📌 Problem-1-Solved
 
         } catch (error) {
             setError(error)
