@@ -16,7 +16,11 @@ const BudgetProgress = ({initialBudget, currentExpenses}) => {
     const [isEditing, setIsEditing] = useState(false)
     const [newBudget, setNewBudget] = useState( initialBudget?.amount?.toString() || "" )
 
-    const percentUsed = initialBudget ? (currentExpenses/initialBudget.amount) * 100 : 0 ;
+    // NEW: Local UI state to reflect optimistic updates
+    const [optimisticAmount, setOptimisticAmount] = useState(initialBudget?.amount);
+
+    // const percentUsed = initialBudget ? (currentExpenses/initialBudget.amount) * 100 : 0 ;
+    const percentUsed = initialBudget ? (currentExpenses/optimisticAmount) * 100 : 0 ;
 
     const handleCancel = () => { 
         setNewBudget(initialBudget?.amount?.toString() || "")
@@ -27,6 +31,7 @@ const BudgetProgress = ({initialBudget, currentExpenses}) => {
         loading: isLoading,
         fn: updateBudgetFn,
         data: updatedBudget,
+        setData, // We’ll use this for optimistic update
         error
     } = useFetch(updateBudget)
     
@@ -38,13 +43,21 @@ const BudgetProgress = ({initialBudget, currentExpenses}) => {
             return
         }
 
+        // Optimistically update UI
+        setOptimisticAmount(amount);
+
+        // Set optimistic response so UI feels instant
+        setData({ success: true, amount });
+        toast.success("Budget updated successfully") 
+
+        // Call server in background
         await updateBudgetFn(amount)
     }
     
     useEffect(() => {
         if (updatedBudget?.success) {
             setIsEditing(false)
-            toast.success("Budget updated successfully")
+            // toast.success("Budget updated successfully")   // we want this toast message only for optimistic updates, for overriding two times message...
         }
     }, [updatedBudget])
 
@@ -90,7 +103,7 @@ const BudgetProgress = ({initialBudget, currentExpenses}) => {
                         ) : <>
                                 <CardDescription>
                                     {
-                                        initialBudget ? `$${currentExpenses.toFixed(2)} of $${initialBudget.amount.toFixed(2)} spent` : "No budget set"
+                                        initialBudget ? `$${currentExpenses.toFixed(2)} of $${optimisticAmount.toFixed(2)} spent` : "No budget set"
                                     }
                                 </CardDescription>
                                 <Button variant="ghost" size='icon' onClick={() => setIsEditing(true)}>

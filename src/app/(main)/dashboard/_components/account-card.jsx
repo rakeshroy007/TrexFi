@@ -63,8 +63,8 @@ const AccountCard = ({ account }) => {
 
   return (
     <div className='space-y-4'>
-        <Card className="hover:shadow-md transition-shadow group relative">
-            <Link href={`/account/${id}`} onClick={handleClick} className={`block ${loading ? "pointer-events-none opacity-50 cursor-not-allowed" : ""}`}>
+        <Card className="hover:shadow-lg transition-shadow group relative">
+            <Link href={`/account/${id}`} onClick={handleClick} className="block">
                 <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                     <CardTitle className="text-sm font-medium capitalize">{name}</CardTitle>
                     <Switch 

@@ -60,15 +60,15 @@ export const checkBudgetAlert = inngest.createFunction(
             amount: true,
           }
         });
-        console.log("Expenses: ", expenses)
+        // console.log("Expenses: ", expenses)
 
         const totalExpenses = expenses?._sum.amount?.toNumber() || 0;
         const budgetAmount = budget.amount;
         const percentageUsed = (totalExpenses / budgetAmount) * 100
 
-        console.log("percentageUsed: ", percentageUsed)
+        // console.log("percentageUsed: ", percentageUsed)
 
-        console.log("budget.lastAlertSent: ",budget.lastAlertSent)
+        // console.log("budget.lastAlertSent: ",budget.lastAlertSent)
         if (percentageUsed >= 80 && 
           (!budget.lastAlertSent || isNewMonth(new Date(budget.lastAlertSent), new Date()))
         ) {
@@ -96,7 +96,7 @@ export const checkBudgetAlert = inngest.createFunction(
 
           // 👉 Update lastAlertSent
           if (!budget?.id) {
-            console.log("Budget Id: ",budget?.id)
+            // console.log("Budget Id: ",budget?.id)
             throw new Error("Budget ID is undefined or null");
           }
 
