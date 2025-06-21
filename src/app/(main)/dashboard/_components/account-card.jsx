@@ -46,25 +46,25 @@ const AccountCard = ({ account }) => {
         }
     }, [error])
 
-    const handleClick = (e) => {
-        e.preventDefault(); // Prevents instant navigation
-        if (!loading) {
-            setLoading(true);
-            try {
-                router.push(`/account/${id}`);
-            } catch (error) {
-                console.error("Navigation failed:", error);
-                toast.error("Failed to navigate.");
-            } finally {
-                setLoading(false)
-            }
-        }
-    }
+    // const handleClick = (e) => {
+    //     e.preventDefault(); // Prevents instant navigation
+    //     if (!loading) {
+    //         setLoading(true);
+    //         try {
+    //             router.push(`/account/${id}`);
+    //         } catch (error) {
+    //             console.error("Navigation failed:", error);
+    //             toast.error("Failed to navigate.");
+    //         } finally {
+    //             setLoading(false)
+    //         }
+    //     }
+    // }
 
   return (
     <div className='space-y-4'>
-        <Card className="hover:shadow-lg transition-shadow group relative">
-            <Link href={`/account/${id}`} onClick={handleClick} className="block">
+        <Card className="hover:shadow-lg hover:scale-[1.02] transition-shadow group relative">
+            <Link href={`/account/${id}`} className="block">
                 <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                     <CardTitle className="text-sm font-medium capitalize">{name}</CardTitle>
                     <Switch 
