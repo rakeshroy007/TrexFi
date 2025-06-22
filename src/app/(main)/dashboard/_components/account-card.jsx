@@ -6,15 +6,16 @@ import { Switch } from '@/components/ui/switch'
 import useFetch from '@/hooks/use-fetch'
 import { ArrowDownRight, ArrowUpRight } from 'lucide-react'
 import Link from 'next/link'
-import { useRouter } from 'next/navigation'
+// import { useRouter } from 'next/navigation'
 import React, { useEffect, useState } from 'react'
 import { toast } from 'sonner'
 
 const AccountCard = ({ account }) => {
+    const [clicked, setClicked] = useState(false)
     if (!account) return null;  // Ensure account is defined
     const { name, type, balance, id, isDefault } = account
-    const [loading, setLoading] = useState(false);
-    const router = useRouter();
+    // const [loading, setLoading] = useState(false);
+    // const router = useRouter();
 
     const {
         loading: updateDefaultLoading,
@@ -61,9 +62,19 @@ const AccountCard = ({ account }) => {
     //     }
     // }
 
+
+  const handleAddCss = () => {
+    setClicked(true)
+    setTimeout(() => setClicked(false), 300) // remove after 200ms
+  }
+
   return (
     <div className='space-y-4'>
-        <Card className="hover:shadow-lg hover:scale-[1.02] transition-shadow group relative">
+        <Card onClick={handleAddCss}
+            className={`group relative cursor-pointer transition duration-200 ease-in-out
+                hover:shadow-lg hover:scale-[0.99]
+                ${clicked ? 'ring-2 ring-blue-400/50 scale-[1.02] bg-muted': ''}
+            `}>
             <Link href={`/account/${id}`} className="block">
                 <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                     <CardTitle className="text-sm font-medium capitalize">{name}</CardTitle>
