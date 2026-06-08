@@ -9,6 +9,7 @@ const inter = Inter({subsets: ['latin']})
 export const metadata = {
   title: "TrexFi",
   description: "One stop Finance Platform",
+  manifest: "/site.webmanifest",
   icons: {
     icon: ['/favicon.ico?v=4'],
     apple: ['/apple-touch-icon.png?v=4'],
@@ -21,11 +22,12 @@ export default function RootLayout({ children }) {
     
     <ClerkProvider>
     <html lang="en">
-      <body
-        className={`${inter.className}`}
-        >
+      <body className={`${inter.className}`} >
         <Header />
-        <main className='min-h-screen'>{children}</main>
+        <main className='min-h-screen'>
+          {children}
+        </main>
+
         <Toaster richColors />
         
         <footer className='bg-blue-100 py-12'>

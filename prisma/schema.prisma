@@ -1,18 +1,10 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
-
 generator client {
-  provider = "prisma-client-js"
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
 }
-
 
 datasource db {
   provider  = "postgresql"
-  url       = env("DATABASE_URL")
-  directUrl = env("DIRECT_URL")
 }
 
 
@@ -36,10 +28,10 @@ model Account{
   id                  String          @id @default(uuid())
   name                String
   type                AccountType            // It is called enum, An enum (enumeration) is a predefined set of limited values...
-  balance             Decimal         @default(0)       // will ask initial balance while creating an account
+  balance             Decimal         @default(0)
   isDefault           Boolean         @default(false)
   userId              String
-  user                User            @relation(fields: [userId], references: [id], onDelete: Cascade)
+  user                User            @relation(fields: [userId], references: [id], onDelete: Cascade)   // why did we use 'user' here --> 🖼️🖼️🖼️ Pic Available --> "/Education Pic/Nextjs"
   transactions        Transaction[]
   createdAt           DateTime        @default(now())
   updatedAt           DateTime        @updatedAt
@@ -76,9 +68,8 @@ model Transaction{
 
   @@index([userId])
   @@index([accountId])
-  @@map("transaction")
+  @@map("transactions")
 }
-
 
 enum TransactionType {
   INCOME
@@ -103,7 +94,7 @@ model Budget{
   id                  String            @id @default(uuid())
   amount              Decimal
   lastAlertSent       DateTime?           // Track when the last alert was sent... 
-  userId              String            @unique 
+  userId              String            @unique    // This tells us "One user can have only one budget"
   user                User              @relation(fields: [userId], references: [id], onDelete: Cascade)
   createdAt           DateTime          @default(now())
   updatedAt           DateTime          @updatedAt
@@ -111,3 +102,5 @@ model Budget{
   @@index([userId])
   @@map("budgets")
 } 
+
+// Need a migragation because I converted 'transaction' to 'transactions'...

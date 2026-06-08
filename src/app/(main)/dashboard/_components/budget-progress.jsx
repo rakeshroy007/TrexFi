@@ -7,7 +7,7 @@ import { Input } from '@/components/ui/input'
 import { Progress } from '@/components/ui/progress'
 import useFetch from '@/hooks/use-fetch'
 import { Check, Loader2, Pencil, X } from 'lucide-react'
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { toast } from 'sonner'
 
 const BudgetProgress = ({initialBudget, currentExpenses}) => {

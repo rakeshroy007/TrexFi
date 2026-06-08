@@ -14,7 +14,7 @@ import useFetch from '@/hooks/use-fetch'
 import { format } from 'date-fns'
 import { ChevronDown, ChevronLeft, ChevronRight, ChevronUp, Clock, MoreHorizontal, RefreshCw, Search, Trash, X } from 'lucide-react'
 import { useRouter } from 'next/navigation'
-import React, { useEffect, useMemo, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { BarLoader } from 'react-spinners'
 import { toast } from 'sonner'
 

@@ -4,7 +4,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { cn } from '@/lib/utils'
 import { format } from 'date-fns'
 import { ArrowDownRight, ArrowUpRight } from 'lucide-react'
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { Cell, Legend, Pie, PieChart, ResponsiveContainer } from 'recharts'
 
 const COLORS = [

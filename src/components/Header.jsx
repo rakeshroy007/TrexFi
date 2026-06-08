@@ -1,7 +1,6 @@
 import { SignedIn, SignedOut, SignInButton, UserButton } from '@clerk/nextjs'
 import Image from 'next/image'
 import Link from 'next/link'
-import React from 'react'
 import { Button } from './ui/button'
 import { checkUser } from '@/lib/checkUser'
 import { AddTransactionButton} from './AddTransactionButton'

@@ -1,4 +1,4 @@
-import React, { Suspense } from 'react'
+import { Suspense } from 'react'
 import DashboardPage from './page'
 // import { BarLoader } from 'react-spinners'
 import { DashboardSkeleton } from '@/components/DashboardSkeleton'
