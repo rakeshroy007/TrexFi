@@ -159,7 +159,7 @@ export async function scanReceipt(file) {
 
         const response = await result.response
         const text = response.text()        // It has like this format --> /```json djifjdijsjf json```/     so we need to clean this text...
-        console.log("text is: ", text)
+        // console.log("text is: ", text)
         const clenedText = text.replace(/```(?:json)?\n?/g, "").trim()
         
         try {
