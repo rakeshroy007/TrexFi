@@ -29,14 +29,10 @@ const Header = async() => {
 
             <div className='flex items-center space-x-4'>
                 <SignedIn>
-                    {/* <Link href="/dashboard" className='text-gray-600 hover:text-blue-600 flex items-center gap-2' >
-                        <Button variant="outline">
-                            <LayoutDashboard size={18} />
-                            <span className='hidden md:inline'>Dashboard</span>
-                        </Button>
-                    </Link> */}
+
                     <AddDashboardButton />
                     <AddTransactionButton />
+                    
                 </SignedIn>
                 <SignedOut>
                     <SignInButton forceRedirectUrl='/dashboard'>

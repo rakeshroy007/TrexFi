@@ -25,6 +25,7 @@ export const checkBudgetAlert = inngest.createFunction(
         }
       })
     })
+    // console.log("INNGEST: ", budgets);
 
     for (const budget of budgets) { 
       const defaultAccount = budget.user.accounts[0]

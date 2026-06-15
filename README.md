@@ -8,7 +8,6 @@ With **AI-powered receipt scanning, budget alerts, and automated monthly reports
 - **Monthly Report via Email** 📩 - Get a detailed summary of your transactions for the last month.
 - **Budget Limit Alerts** ⏰ - Stay on top of your finances with automatic notifications through email when you exceed your budget.
 - **AI Receipt Scanner** 🤖 - Scan receipts and automatically fetch data into the transaction form.
-- **Bot Protection & Rate Limiting** 🛡️ - Users can make up to **20 requests per hour**, with automatic refills every hour.
 - **Secure Authentication** 🔒 - Powered by Clerk for seamless user authentication and authorization.
 
 ## 🚀 Tech Stack
@@ -31,7 +30,6 @@ TrexFi is built with cutting-edge tools and technologies to ensure high performa
 2. **Transactions are added** manually or using the **AI** receipt scanner.
 3. **Users receive monthly email reports** summarizing their transactions.
 4. **Budget alerts are triggered** when expenses exceed set limits.
-5. **Bot protection ensures fair usage**, allowing **20 requests per hour** with automatic refills.
 
 ## 🛠️ Installation & Setup
 1. Clone the repository:
@@ -65,11 +63,9 @@ To run this project, you will need to add the following environment variables to
     1. DATABASE_URL=postgresql://username:password@host:port/database?pgbouncer=true
     2. DIRECT_URL=postgresql://username:password@host:port/database
 
-#### Arcjet API Key :
-    ARCJET_KEY=ajkey_your_arcjet_key
- 
 #### Gemini AI API Key :
     GEMINI_API_KEY=your_gemini_api_key
+    GEMINI_MODEL_NAME=model_name
 
 #### SMTP (Email Sending Configuration) :
     1. SMTP_USER=your_email@example.com

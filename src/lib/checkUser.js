@@ -5,7 +5,8 @@ export const checkUser = async () => {
     const user = await currentUser() 
     
     if (!user) {
-        console.log("Inside checkUser.js")
+        // console.log("Inside checkUser.js")
+        // console.log("USER: ", user)
         return null 
         
     }

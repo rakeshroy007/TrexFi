@@ -118,7 +118,8 @@ function calculateNextRecurringDate(startDate, interval) {
 
 export async function scanReceipt(file) {
     try {
-        const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" })
+        const gemini_model = process.env.GEMINI_MODEL_NAME;
+        const model = genAI.getGenerativeModel({ model: gemini_model })
 
         // ➡️ Convert File to ArrayBuffer
         const arrayBuffer = await file.arrayBuffer()

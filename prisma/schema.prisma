@@ -68,7 +68,7 @@ model Transaction{
 
   @@index([userId])
   @@index([accountId])
-  @@map("transactions")
+  @@map("transaction")
 }
 
 enum TransactionType {

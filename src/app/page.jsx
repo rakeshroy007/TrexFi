@@ -1,4 +1,4 @@
-export const dynamic = 'force-dynamic';
+// export const dynamic = 'force-dynamic';
 
 import HeroSection from "@/components/Hero";
 import { featuresData, howItWorksData, statsData, testimonialsData } from "./data/landing";
@@ -12,6 +12,7 @@ export default function Home() {
     <div className="mt-40">
       <HeroSection />
 
+      {/* Demo Stats */}
       <section className="py-20 bg-blue-50">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
@@ -29,6 +30,7 @@ export default function Home() {
         </div>
       </section>
       
+      {/* Featuer cards */}
       <section className="py-20">
         <div className="container mx-auto px-4">
           <h2 className="text-3xl font-bold text-center mb-12">
@@ -50,6 +52,7 @@ export default function Home() {
         </div>
       </section>
 
+      {/* How It Works - Section */}
       <section className="py-20 bg-blue-50">
         <div className="container mx-auto px-4">
           <h2 className="text-3xl font-bold text-center mb-16">
@@ -71,6 +74,7 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Testimonial */}
       <section className="py-20">
         <div className="container mx-auto px-4">
           <h2 className="text-3xl font-bold text-center mb-12">
@@ -102,6 +106,7 @@ export default function Home() {
           </div>
         </div>
       </section>
+      
       <section className="py-20 bg-blue-600">
         <div className="container mx-auto px-4 text-center">
           <h2 className="text-3xl font-bold  text-white mb-4">
