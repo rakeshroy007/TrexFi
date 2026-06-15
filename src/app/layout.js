@@ -4,6 +4,8 @@ import Header from '@/components/Header';
 import { ClerkProvider } from '@clerk/nextjs';
 import { Toaster } from '@/components/ui/sonner';
 
+export const dynamic = 'force-dynamic';
+
 const inter = Inter({subsets: ['latin']})
 
 export const metadata = {
@@ -20,7 +22,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     
-    <ClerkProvider>
+    <ClerkProvider>     {/* 👈 THIS is making everything dynamic */}
     <html lang="en">
       <body className={`${inter.className}`} >
         <Header />
@@ -40,3 +42,18 @@ export default function RootLayout({ children }) {
     </ClerkProvider>
   );
 }
+
+
+
+/*
+NOTES: 
+💠 ClerkProvider reads cookies and request headers on every request to check the user's auth state (logged in / logged out). This is a dynamic operation.
+
+💠 Next.js works on a "if the layout is dynamic, all children are dynamic" rule.
+
+💠 For an auth-based app. Clerk needs to know per-request who the user is, so it can:
+    * Show different UI in <Header /> (logged in vs logged out)
+    * Protect routes
+    * Provide auth() / currentUser() in server components
+*/
+

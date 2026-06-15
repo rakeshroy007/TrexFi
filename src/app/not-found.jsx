@@ -1,3 +1,5 @@
+export const dynamic = 'force-dynamic';
+
 import { Button } from '@/components/ui/button'
 import Link from 'next/link'
 
@@ -17,3 +19,8 @@ const NotFound = () => {
 }
 
 export default NotFound
+
+/*
+🟢 So why can't not-found be '○' instead of 'ƒ'?
+==> Because Next.js doesn't know at build time which URLs users will mistype or guess. It can't pre-render /asdfjkl or /foo/bar/baz ahead of time — there are infinite possibilities. So it keeps the 404 page dynamic and renders it fresh whenever an unmatched route is hit.
+*/
